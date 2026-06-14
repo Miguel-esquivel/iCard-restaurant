@@ -3,12 +3,14 @@
 ## Instalación recomendada
 
 Este repo contiene dos partes:
+
 - Backend Django en `icard_django/icard`
 - Frontend React en `icard_react/icard`
 
 ### Backend (Django)
 
 1. Crear un entorno virtual limpio:
+
 ```powershell
 cd icard_django/icard
 python -m venv .venv
@@ -16,21 +18,25 @@ python -m venv .venv
 ```
 
 2. Instalar dependencias:
+
 ```powershell
 pip install -r requirements.txt
 ```
 
 3. Aplicar migraciones:
+
 ```powershell
 python manage.py migrate
 ```
 
 4. Crear usuario administrador:
+
 ```powershell
 python manage.py createsuperuser
 ```
 
 5. Ejecutar el servidor:
+
 ```powershell
 python manage.py runserver
 ```
@@ -40,12 +46,14 @@ python manage.py runserver
 ### Frontend (React)
 
 1. Instalar dependencias:
+
 ```powershell
 cd icard_react/icard
 npm install
 ```
 
 2. Ejecutar la app:
+
 ```powershell
 npm start
 ```
@@ -65,12 +73,14 @@ npm start
 ### Clonar desde GitHub
 
 1. Clona el repo y entra en la carpeta:
+
 ```powershell
 git clone https://github.com/<tu-usuario>/<tu-repo>.git
 cd iCard-restaurant
 ```
 
 2. Backend: crear entorno, instalar dependencias y ejecutar (resumen):
+
 ```powershell
 cd icard_django/icard
 python -m venv .venv
@@ -82,6 +92,7 @@ python manage.py runserver
 ```
 
 3. Frontend: instalar e iniciar:
+
 ```powershell
 cd ../../icard_react/icard
 npm install
