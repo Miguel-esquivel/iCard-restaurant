@@ -22,3 +22,27 @@ export async function loginApi(formValue) {
      throw error
   }
 }
+
+export async function getMeApi(token) {
+  try {
+    const url = `${BASE_API}/api/auth/me/`;   
+    const params = {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    }
+    
+    const response = await fetch(url, params);
+
+    if (response.status !== 200) {
+      throw new Error("Error al obtener la información del usuario");
+    }
+
+    const result = await response.json();
+    return result;
+
+  } catch (error) {
+    throw error
+  } 
+}

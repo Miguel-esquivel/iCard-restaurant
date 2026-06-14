@@ -3,10 +3,13 @@ import { Button, Form, Segment } from "semantic-ui-react"
 import './LoginForm.scss'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { toast } from 'react-toastify'
 import { loginApi } from '../../../api/user'
+import { useAuth } from '../../../hooks/useAuth'
 
 export function LoginForm() {
-
+  const { login } = useAuth();
+  //console.log(login);
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -14,11 +17,13 @@ export function LoginForm() {
   try {
     const response = await loginApi(formValue)
     const { access } = response;
-    console.log(access)
+    login(access);
+    //console.log(access)
 
     resetForm()
   } catch (error) {
     console.error(error)
+    toast.error("Error al iniciar sesión. Por favor, verifica tus credenciales.")
   }
 }
   })
@@ -91,6 +96,6 @@ function validationSchema() {
       .required("El correo electrónico es obligatorio"),
 
     password: Yup.string()
-      .required("La contraseña es obligatoria")
-  })
+      .required("La contraseña es obligatoria"),
+  });
 }
