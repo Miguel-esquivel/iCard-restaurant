@@ -3,6 +3,6 @@ import { AuthContext } from '../context/AuthContext';
 
 
 export function useAuth() {
-  const {auth, login, logout} = useContext(AuthContext);
-  return {auth, login, logout};
+  const {auth, isLoading, login, logout} = useContext(AuthContext);
+  return {auth, isLoading, login, logout};
 }

@@ -6,6 +6,7 @@ const routesAdmin = [
     path: "/admin",
     layout: AdminLayout,
     component: HomeAdmin,
+    //protected: true, // 👈
   },
 ];
 

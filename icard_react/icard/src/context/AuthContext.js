@@ -1,32 +1,45 @@
-
-import React, { createContext, useState, useCallback, useMemo } from 'react';
-import { setToken, removeToken } from '../api/token';
+import React, { createContext, useState, useCallback, useMemo, useEffect } from 'react';
+import { setToken, removeToken, getToken } from '../api/token';
 import { useUser } from '../hooks/useUser';
 
 export const AuthContext = createContext({
-  auth: undefined,
+  auth: null,
+  isLoading: true,
   login: () => null,
   logout: () => null,
 });
 
 export function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(undefined);
+  const [auth, setAuth] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { getMe } = useUser();
+
+  useEffect(() => {
+    (async () => {
+      const token = getToken();
+
+      if (token) {
+        try {
+          const me = await getMe(token);
+          setAuth({ token, me });
+        } catch (error) {
+          console.error(error);
+          removeToken();
+          setAuth(null);
+        }
+      } else {
+        setAuth(null);
+      }
+
+      setIsLoading(false);
+    })();
+  }, [getMe]);
 
   const login = useCallback(async (accessToken) => {
     try {
-      // Guardar token en localStorage
       setToken(accessToken);
-
-      // Obtener datos del usuario
       const me = await getMe(accessToken);
-
-      // Guardar información de autenticación
-      setAuth({
-        token: accessToken,
-        me,
-      });
-
+      setAuth({ token: accessToken, me });
     } catch (error) {
       console.error('Error en login:', error);
       throw error;
@@ -35,18 +48,18 @@ export function AuthProvider({ children }) {
 
   const logout = useCallback(() => {
     removeToken();
-
-    setAuth(undefined);
+    setAuth(null);
   }, []);
 
   const valueContext = useMemo(
-    () => ({
-      auth,
-      login,
-      logout,
-    }),
-    [auth, login, logout]
+    () => ({ auth, isLoading, login, logout }),
+    [auth, 
+      isLoading, 
+      login, 
+      logout]
   );
+
+  //if (auth === undefined) return null;
 
   return (
     <AuthContext.Provider value={valueContext}>
