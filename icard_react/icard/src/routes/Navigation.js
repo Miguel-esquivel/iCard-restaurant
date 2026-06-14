@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; // 👈 Navigate
 import routes from "./routes";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "hooks/useAuth";
 
 function PrivateRoute({ children }) {
   const { auth, isLoading } = useAuth();

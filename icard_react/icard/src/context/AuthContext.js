@@ -1,6 +1,6 @@
 import React, { createContext, useState, useCallback, useMemo, useEffect } from 'react';
-import { setToken, removeToken, getToken } from '../api/token';
-import { useUser } from '../hooks/useUser';
+import { setToken, removeToken, getToken } from 'api/token';
+import { useUser } from 'hooks/useUser';
 
 export const AuthContext = createContext({
   auth: null,

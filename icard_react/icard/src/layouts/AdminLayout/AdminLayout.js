@@ -1,6 +1,6 @@
 import React from 'react';
-import { LoginAdmin } from "../../pages/Admin/LoginAdmin"
-import { useAuth } from '../../hooks/useAuth';
+import { LoginAdmin } from "pages/Admin/LoginAdmin"
+import { useAuth } from 'hooks/useAuth';
 import './AdminLayout.scss';
 
 export function AdminLayout(props) {

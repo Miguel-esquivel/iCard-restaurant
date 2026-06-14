@@ -1,6 +1,6 @@
 import React from 'react'
 import './LoginAdmin.scss'
-import { LoginForm } from '../../../components/Admin'
+import { LoginForm } from 'components/Admin'
 
 export function LoginAdmin() {
   return (

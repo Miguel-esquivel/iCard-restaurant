@@ -4,8 +4,8 @@ import './LoginForm.scss'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
-import { loginApi } from '../../../api/user'
-import { useAuth } from '../../../hooks/useAuth'
+import { loginApi } from 'api/user'
+import { useAuth } from 'hooks/useAuth'
 
 export function LoginForm() {
   const { login } = useAuth();

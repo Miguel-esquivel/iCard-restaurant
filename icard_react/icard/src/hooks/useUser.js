@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { getMeApi } from "../api/user";
+import { getMeApi } from "api/user";
 
 export function useUser() {
   const getMe = useCallback(async (token) => {

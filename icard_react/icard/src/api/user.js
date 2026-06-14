@@ -1,4 +1,4 @@
-import { BASE_API } from "../utils/constants";
+import { BASE_API } from "utils/constants";
 
 export async function loginApi(formValue) {
   try { 

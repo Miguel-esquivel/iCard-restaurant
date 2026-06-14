@@ -1,0 +1,28 @@
+# Python virtual environments
+icard_django/envs/
+**/__pycache__/
+**/*.py[cod]
+*.so
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+icard_django/icard/db.sqlite3
+icard_django/icard/*.log
+icard_django/icard/.env
+
+# Node
+icard_react/icard/node_modules/
+icard_react/icard/build/
+
+# VS Code
+.vscode/
+
+# Environment files
+.env
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
