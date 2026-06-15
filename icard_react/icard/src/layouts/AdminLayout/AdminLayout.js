@@ -2,6 +2,8 @@ import React from 'react';
 import { LoginAdmin } from "pages/Admin/LoginAdmin"
 import { useAuth } from 'hooks/useAuth';
 import './AdminLayout.scss';
+import { TopMenu, SideMenu } from "../../components/Admin";
+
 
 export function AdminLayout(props) {
   const { children } = props;
@@ -12,9 +14,13 @@ export function AdminLayout(props) {
   if (!auth) return <LoginAdmin />;
 
   return (
-    <div>
-      <p>AdminLayout</p>
-      {children}    
+    <div className="admin-layout">
+      <div className="admin-layout__menu">
+        <TopMenu />
+        </div>
+      <div className="main-content">
+        <SideMenu>{children}</SideMenu>
+      </div>
     </div>
-  )
+  );
 }
