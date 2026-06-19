@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { getMeApi, getUsersApi  } from "api/user";
+import { getMeApi, getUsersApi, addUserApi, updateUserApi, deleteUserApi  } from "api/user";
 import { useAuth } from './useAuth';
 
 
@@ -14,6 +14,7 @@ export function useUser() {
       const response = await getMeApi(token);
       return response;
     } catch (error) {
+
       throw error;
     }
   }, []); // sin dependencias, se crea solo una vez
@@ -30,11 +31,53 @@ export function useUser() {
     }
   };
 
+  const addUser = async (data) =>{
+    try{
+           setLoading(true);
+           await addUserApi(data, auth.token)
+           setLoading(false);
+    } catch (error){
+           setLoading(false);
+           setError(error)
+    }
+  }
+
+const updateUser = async (id, data) => {
+  try {
+    setLoading(true);
+
+    if (!data.password) {
+      delete data.password;
+    }
+    //await updateUserApi(id, data, auth.token);
+    await updateUserApi(id, data, auth.token);
+    await getUsers(); // 🔥 clave
+  } catch (error) {
+    setError(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+const  deleteUser = async (id) =>{
+  try {
+       setLoading(true);
+       await deleteUserApi(id, auth.token);
+       setLoading(false);
+  } catch(error){
+    setLoading(false);
+    setError(error);
+  }
+};
+
   return { 
     loading,
     error,
     users,
     getUsers,
-    getMe
+    getMe,
+    addUser,
+    updateUser,
+    deleteUser
   };
 }
