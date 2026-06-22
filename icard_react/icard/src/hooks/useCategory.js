@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { getCategoriesApi, addCategoryApi } from "../api/category";
+import { getCategoriesApi, addCategoryApi, updateCategoryApi,deleteCategoryApi} from "../api/category";
 import { useAuth } from "./useAuth";
 
 export function useCategory() {
@@ -31,11 +31,35 @@ export function useCategory() {
     }
   }, [auth.token]);
 
+    const updateCategory = useCallback(async (id, data) => {
+    try {
+      setLoading(true);
+      await updateCategoryApi(id, data, auth.token);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [auth.token]);
+
+      const deleteCategory = useCallback(async (id) => {
+    try {
+      setLoading(true);
+      await deleteCategoryApi(id, auth.token);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [auth.token]);
+
   return {
     loading,
     error,
     categories,
     getCategories,
     addCategory,
+    updateCategory,
+    deleteCategory,
   };
 }

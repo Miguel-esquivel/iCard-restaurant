@@ -9,7 +9,7 @@ import { useCategory } from '../../../../hooks';
 export function AddEditCategoryForm(props) {
  const {onClose, onRefetch, category } = props;
  const [ previewImage, setPreviewImage ] =useState(category?.image || null);
- const { addCategory } = useCategory();  
+ const { addCategory, updateCategory } = useCategory();  
 
  const formik = useFormik({
       initialValues: initialValues(category),
@@ -17,7 +17,7 @@ export function AddEditCategoryForm(props) {
       validateOnChange: false,
       onSubmit: async (formValue) => {
         try{
-            if(category) console.log('Actualizar categoria')
+            if(category) await updateCategory(category.id, formValue)
             else await addCategory(formValue);
             onRefetch();
             onClose();
