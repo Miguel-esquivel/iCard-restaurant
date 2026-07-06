@@ -36,7 +36,10 @@ export function AddEditCategoryForm(props) {
  }, [formik]);
 
  const { getRootProps, getInputProps } = useDropzone({
-      accept: 'image/jpeg, image/png',
+      accept: {
+        'image/jpeg': ['.jpeg', '.jpg'],
+        'image/png': ['.png']
+      },
       noKeyboard: true,
       multiple: false,
       onDrop,

@@ -70,6 +70,27 @@ npm start
 - El backend usa SQLite por defecto en `icard_django/icard/db.sqlite3`.
 - El frontend usa `react-scripts` y debe ejecutarse desde `icard_react/icard`.
 
+### Extensiones usadas
+
+Backend:
+
+- Django
+- django-cors-headers
+- djangorestframework
+- djangorestframework-simplejwt
+- drf-yasg
+
+Frontend:
+
+- formik
+- react-dropzone
+- react-router-dom
+- react-toastify
+- sass
+- semantic-ui-react
+- semantic-ui-css
+- yup
+
 ### Clonar desde GitHub
 
 1. Clona el repo y entra en la carpeta:

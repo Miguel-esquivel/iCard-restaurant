@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'drf_yasg',
     'users',     # Custom user app 
     'corsheaders',
-    'categories'
+    'django_filters',
+    'categories',
+    'products',
 
 ]
 
